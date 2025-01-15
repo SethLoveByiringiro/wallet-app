@@ -1,18 +1,18 @@
 // server/routes/transactionRoutes.ts
-import { Router } from "express";
+import { Router, RequestHandler } from "express";
 import { transactionController } from "../controllers/transactionController";
 import { auth } from "../middleware/auth";
 
 const router = Router();
 
-// All routes require authentication
-router.use(auth);
+// Cast the auth middleware to RequestHandler
+router.use(auth as RequestHandler);
 
-// CRUD routes
-router.post("/", transactionController.create);
-router.get("/", transactionController.getAll);
-router.get("/:id", transactionController.getById);
-router.put("/:id", transactionController.update);
-router.delete("/:id", transactionController.delete);
+// Cast controller methods to RequestHandler
+router.post("/", transactionController.create as RequestHandler);
+router.get("/", transactionController.getAll as RequestHandler);
+router.get("/:id", transactionController.getById as RequestHandler);
+router.put("/:id", transactionController.update as RequestHandler);
+router.delete("/:id", transactionController.delete as RequestHandler);
 
 export default router;

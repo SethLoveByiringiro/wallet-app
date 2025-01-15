@@ -1,13 +1,21 @@
 // server/routes/reportRoutes.ts
-import { Router } from "express";
+import { Router, RequestHandler } from "express";
 import { reportController } from "../controllers/reportController";
 import { auth } from "../middleware/auth";
 
 const router = Router();
 
-router.use(auth);
+// Cast auth middleware to RequestHandler
+router.use(auth as RequestHandler);
 
-router.get("/monthly-summary", reportController.getMonthlySummary);
-router.get("/category-breakdown", reportController.getCategoryBreakdown);
+// Cast controller methods to RequestHandler
+router.get(
+  "/monthly-summary",
+  reportController.getMonthlySummary as RequestHandler
+);
+router.get(
+  "/category-breakdown",
+  reportController.getCategoryBreakdown as RequestHandler
+);
 
 export default router;
