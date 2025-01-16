@@ -18,11 +18,7 @@ dist-ssr
 .idea
 .DS_Store
 *.suo
-*.env
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-# OS generated files
-.DS_Store
